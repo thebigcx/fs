@@ -35,3 +35,16 @@ void fbackbit(FILE *file, size_t *pos)
     if (!((*pos)-- % 8))
         fseek(file, -1, SEEK_CUR);
 }
+
+uint32_t getsect(FILE *file)
+{
+    fseek(file, 512, SEEK_SET);
+
+    size_t i = 0, pos = 0;
+    while (getbit(file, &pos)) i++;
+
+    fbackbit(file, &pos);
+    fputbit(1, file, &pos);
+
+    return i;
+}

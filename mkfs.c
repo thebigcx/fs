@@ -48,6 +48,15 @@ int main(int argc, char **argv)
 
     fputbit(1, file, &pos); // Root directory
     
+    struct node root = {
+        .size = 0,
+    };
+
+    root.sects[0] = getsect(file);
+   
+    fseek(file, super.root * 512, SEEK_SET);
+    fwrite(&root, sizeof(struct node), 1, file);
+
     fclose(file);
     return 0;
 }
