@@ -29,6 +29,7 @@ Occupies first 32 bytes of LBA, rest is for the data
 |uint32_t |Trebly indirect sectors|
 |uint8_t[7] |Padding|
 |uint8_t[480] | Data|
+
 Data can be a list of directory entries, or file data.
 
 ## Directory Entry
